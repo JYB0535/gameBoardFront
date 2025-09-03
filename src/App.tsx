@@ -32,9 +32,10 @@ function App() {
                 <Button sx={topButtonStyle}>홈 </Button>
                 <Button sx={topButtonStyle}>자유 게시판 </Button>
                 <Button sx={topButtonStyle}>공략 게시판 </Button>
+                <Button sx={topButtonStyle}>질문 게시판 </Button>
                 <Button sx={topButtonStyle}>정보공유 게시판 </Button>
                 <Button sx={topButtonStyle}>팬아트 게시판 </Button>
-                <Button sx={topButtonStyle}>질문 게시판 </Button>
+              
               </Box>
                <Button sx={topButtonStyle}>로그인</Button>
           </Toolbar>

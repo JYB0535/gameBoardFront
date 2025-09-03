@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import type { Post } from "../type";
 import { DataGrid, type GridColDef } from "@mui/x-data-grid";
 import { Box, Button } from "@mui/material";
+import { getData } from "../api/postApi";
 
 
 export default function Main() {
@@ -16,6 +17,9 @@ export default function Main() {
      ]
 
      const loadPostData = () => {
+        getData()
+        .then(res=> setData(res))
+        .catch(err => console.log(err))
 
      }
         
@@ -34,6 +38,7 @@ export default function Main() {
                 columns={columns}
                 getRowId={row => row.id} //열 하나 가지고 와서 그 열의 아이디 반환
                 disableRowSelectionOnClick={true}
+                showToolbar
             />
        
     
