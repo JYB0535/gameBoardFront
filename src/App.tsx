@@ -1,23 +1,61 @@
-
 import './App.css'
-import { AppBar, Container, CssBaseline, Toolbar, Typography } from '@mui/material'
+import { AppBar, Box, Button, Container, CssBaseline, Toolbar, Typography } from '@mui/material'
+import Main from './pages/Main';
 
 function App() {
 
+  const topButtonStyle = {
+    color: 'white', mx: 4 
+  };
+
   return (
     <>
-      <Container maxWidth='xl'>
+   
+
+
+      <Container maxWidth='xl' >
+          
         <CssBaseline />
-        <AppBar position="fixed">
+           
+        <AppBar position="static" >
+           
           <Toolbar>
-            <Typography variant="h6">
-              게임 게시판 
+            <Typography variant="h6" sx={{mr: 2}} >
+              게임게시판
             </Typography>
+
+             
+               <Box sx={{justifyContent: 'center', flexGrow: 1}}>
+                <Button sx={topButtonStyle}>홈 </Button>
+                <Button sx={topButtonStyle}>자유 게시판 </Button>
+                <Button sx={topButtonStyle}>공략 게시판 </Button>
+                <Button sx={topButtonStyle}>정보공유 게시판 </Button>
+                <Button sx={topButtonStyle}>팬아트 게시판 </Button>
+                <Button sx={topButtonStyle}>질문 게시판 </Button>
+              </Box>
+
+               <Button sx={{ color: 'white', mx: 2}}>로그인</Button>
+              
           </Toolbar>
-        </AppBar> 
-      
+         
+      <img 
+            src="메이플.jpg"
+            alt="게임 배너"
+            style={{width: "100%", height: "400px"}}
+            
+      />
+         <Main/>
+        
+
+          
+ 
+      </AppBar> 
+   
        
+    
       </Container>
+
+
     </>
 
   )
