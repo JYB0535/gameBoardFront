@@ -8,7 +8,7 @@ function App() {
     <>
       <Container maxWidth='xl'>
         <CssBaseline />
-        <AppBar position="static">
+        <AppBar position="fixed">
           <Toolbar>
             <Typography variant="h6">
               게임 게시판 
