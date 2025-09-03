@@ -1,5 +1,12 @@
 export type Post = {
     id?: number;
-    .dkfhejhjke
-    
+    name: string;
+    Date: number;
+    postName: string;
+
+}
+export type User = {
+    username: string;
+    password: string;
+    email: string;
 }
