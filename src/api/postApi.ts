@@ -20,7 +20,7 @@ const getPostDummy = [
         postName: 'cde의 글입니다'
     },
 
-
+return getPostDummy;
 
 
 
