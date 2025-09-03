@@ -9,9 +9,10 @@ export default function Main() {
 
      const columns: GridColDef[] = [
         {field: 'id', headerName: '게시판 번호', width: 200},
+        {field: 'postName', headerName: '게시물 제목', width: 200},
         {field: 'name', headerName: '작성자', width: 200},
         {field: 'date', headerName: '날짜', width: 200},
-        {field: 'postName', headerName: '게시물 제목', width: 200},
+        
      ]
 
      const loadPostData = () => {
