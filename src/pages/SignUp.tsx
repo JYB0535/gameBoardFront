@@ -34,28 +34,35 @@ const SignUp = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <input
-          name="username"
-          type="text"
-          placeholder="사용자 이름"
-          onChange={handleChange}
-          style={{ padding: "8px" }}
-        />
-          <button type="button" style={{ marginLeft: "auto" }}>중복 확인</button>
-        </div>
-        
-        
-      
-      <br/><br/>
-      <input name="password" type="password" placeholder="비밀번호" onChange={handleChange} style={{ flex: 1, padding: "8px" }}/>
-      <br/><br/>
-      <input name="email" type="email" placeholder="이메일" onChange={handleChange} style={{ flex: 1, padding: "8px" }}/> 
-      <br/><br/>
-      <button type="submit">회원가입</button>
-      
-    </form>
+    <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+  <div style={{ display: "flex", flexDirection: "column", width: "300px", gap: "10px" }}>
+    <div style={{ display: "flex", gap: "10px" }}>
+      <input
+        name="username"
+        type="text"
+        placeholder="사용자 이름"
+        onChange={handleChange}
+        style={{ padding: "8px", flex: 1 }}
+      />
+      <button type="button">중복 확인</button>
+    </div>
+    <input
+      name="password"
+      type="password"
+      placeholder="비밀번호"
+      onChange={handleChange}
+      style={{ padding: "8px" }}
+    />
+    <input
+      name="email"
+      type="email"
+      placeholder="이메일"
+      onChange={handleChange}
+      style={{ padding: "8px" }}
+    />
+    <button type="submit" style={{ marginTop: "10px" }}>회원가입</button>
+  </div>
+</form>
   );
 };
 

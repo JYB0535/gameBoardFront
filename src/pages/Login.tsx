@@ -50,7 +50,7 @@ export default function Login() {
             >
                 로그인
             </Button> 
-            <button type="submit">회원가입</button>
+            <button type="button" onClick={() => navigate("/signUp")}>회원가입</button>
             <Snackbar 
               //  open={toastOpen}
                 autoHideDuration={3000}

@@ -29,8 +29,9 @@ function App() {
          
 
         {/* Layout 없이 바로 나오는 페이지 */}
-        <Route path="/signUp" element={<SignUp />} />
-
+        <Route element={<Bar/>}>
+          <Route path="/signUp" element={<SignUp />} />
+        </Route>
         <Route element={<Bar/>}>
           <Route path="/login" element ={<Login/>}/>
         </Route>
