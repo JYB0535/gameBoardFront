@@ -1,7 +1,7 @@
 import { AppBar, Box, Button, Container, CssBaseline, Toolbar, Typography } from "@mui/material";
 import { Link, Outlet } from "react-router-dom";
 
-export default function Bar() {
+export default function CommunityLayout() {
 
  
     const topButtonStyle = {
@@ -17,10 +17,10 @@ export default function Bar() {
     
       <Container maxWidth='xl' >
         <CssBaseline />
-        <AppBar position="fixed" >
+        <AppBar position="static" >
           <Toolbar>
             <Typography variant="h6" sx={{mr: 2}} >
-              게임게시판
+              커뮤니티 게시판
             </Typography>
                <Box sx={{ justifyContent: 'center', flexGrow: 1 }}>
                 <Button component={Link} to="/" sx={topButtonStyle}>홈</Button>
@@ -28,12 +28,17 @@ export default function Bar() {
                 <Button component={Link} to="/community" sx={topButtonStyle}>커뮤니티 게시판</Button>
                 {/* <Button component={Link} to="/info" sx={topButtonStyle}>정보공유 게시판</Button>
                 <Button component={Link} to="/fanart" sx={topButtonStyle}>팬아트 게시판</Button>
-                <Button component={Link} to="/question" sx={topButtonStyle}>질문 게시판</Button> */}
+                <Button component={Link} to="/question" sx={topButtonStyle}>질문 게시판</Button>  */}
                </Box>
                 <Button component={Link} to="/login" sx={topButtonStyle}>로그인</Button>
+                <Button component={Link} to="/" sx={topButtonStyle}>로그아웃</Button>
 
           </Toolbar>
-
+      <img 
+            src="커뮤니티고양이.jpg"
+            alt="화살표 배너"
+            style={{width: "100%", height: "400px"}}
+      />
       </AppBar> 
        {/* 여기서 자식 라우트가 바뀜 */}
       <Outlet />

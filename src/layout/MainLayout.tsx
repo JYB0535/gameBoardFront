@@ -1,7 +1,7 @@
 import { AppBar, Box, Button, Container, CssBaseline, Toolbar, Typography } from "@mui/material";
 import { Link, Outlet } from "react-router-dom";
 
-export default function Bar() {
+export default function MainLayout() {
 
  
     const topButtonStyle = {
@@ -17,7 +17,7 @@ export default function Bar() {
     
       <Container maxWidth='xl' >
         <CssBaseline />
-        <AppBar position="fixed" >
+        <AppBar position="static" >
           <Toolbar>
             <Typography variant="h6" sx={{mr: 2}} >
               게임게시판
@@ -31,9 +31,14 @@ export default function Bar() {
                 <Button component={Link} to="/question" sx={topButtonStyle}>질문 게시판</Button> */}
                </Box>
                 <Button component={Link} to="/login" sx={topButtonStyle}>로그인</Button>
+                <Button component={Link} to="/" sx={topButtonStyle}>로그아웃</Button>
 
           </Toolbar>
-
+      <img 
+            src="메이플.jpg"
+            alt="게임 배너"
+            style={{width: "100%", height: "400px"}}
+      />
       </AppBar> 
        {/* 여기서 자식 라우트가 바뀜 */}
       <Outlet />

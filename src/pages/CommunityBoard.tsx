@@ -5,7 +5,7 @@ import { getData } from "../api/postApi";
 import {  useNavigate } from "react-router-dom";
 
 
-export default function FreeBoard() {
+export default function CommunityBoard() {
     const [data, setData] = useState<Post[]>([]);
     const navigate = useNavigate();
 

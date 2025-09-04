@@ -1,7 +1,7 @@
 import { AppBar, Box, Button, Container, CssBaseline, Toolbar, Typography } from "@mui/material";
 import { Link, Outlet } from "react-router-dom";
 
-export default function Layout() {
+export default function FreeLayout() {
 
  
     const topButtonStyle = {
@@ -20,22 +20,23 @@ export default function Layout() {
         <AppBar position="static" >
           <Toolbar>
             <Typography variant="h6" sx={{mr: 2}} >
-              게임게시판
+              자유게시판
             </Typography>
                <Box sx={{ justifyContent: 'center', flexGrow: 1 }}>
                 <Button component={Link} to="/" sx={topButtonStyle}>홈</Button>
                 <Button component={Link} to="/freeBoard" sx={topButtonStyle}>자유 게시판</Button>
-                {/* <Button component={Link} to="/guide" sx={topButtonStyle}>공략 게시판</Button>
-                <Button component={Link} to="/info" sx={topButtonStyle}>정보공유 게시판</Button>
+                <Button component={Link} to="/community" sx={topButtonStyle}>커뮤니티 게시판</Button>
+                {/* <Button component={Link} to="/info" sx={topButtonStyle}>정보공유 게시판</Button>
                 <Button component={Link} to="/fanart" sx={topButtonStyle}>팬아트 게시판</Button>
-                <Button component={Link} to="/question" sx={topButtonStyle}>질문 게시판</Button> */}
+                <Button component={Link} to="/question" sx={topButtonStyle}>질문 게시판</Button>  */}
                </Box>
                 <Button component={Link} to="/login" sx={topButtonStyle}>로그인</Button>
+                <Button component={Link} to="/" sx={topButtonStyle}>로그아웃</Button>
 
           </Toolbar>
       <img 
-            src="메이플.jpg"
-            alt="게임 배너"
+            src="종합게임.jpg"
+            alt="화살표 배너"
             style={{width: "100%", height: "400px"}}
       />
       </AppBar> 
