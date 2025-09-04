@@ -2,10 +2,13 @@ import { useEffect, useState } from "react";
 import type { Post } from "../type";
 import { DataGrid, type GridColDef } from "@mui/x-data-grid";
 import { getData } from "../api/postApi";
+import { Navigate, useNavigate } from "react-router-dom";
 
 
 export default function MainPage() {
     const [data, setData] = useState<Post[]>([]);
+    const navigate = useNavigate();
+
 
      const columns: GridColDef[] = [
         {field: 'id', headerName: '게시판 번호', width: 200},
@@ -28,6 +31,12 @@ export default function MainPage() {
         loadPostData();
     }, []) ;
 
+    const handleRowClick = (params: any) => {
+    const postId = params.row.id;
+    Navigate(`/post/${postId}`);
+  };
+
+
  
 
     return(
@@ -38,9 +47,8 @@ export default function MainPage() {
                 getRowId={row => row.id} //열 하나 가지고 와서 그 열의 아이디 반환
                 disableRowSelectionOnClick={true}
                 showToolbar
-                onRowClick={(params) => {
-                console.log('클릭한 행 데이터:', params.row);
-                }}
+                onRowClick={handleRowClick}
+
             />
        
     

@@ -8,6 +8,7 @@ import PostList from './pages/PostList';
 import PostPage from './pages/PostPage';
 import Bar from './layout/Bar';
 import FreeBoard from './pages/FreeBoard';
+import PostDetail from './pages/PostDetail';
 
 function App() {
 
@@ -37,6 +38,10 @@ function App() {
         <Route element={<Layout />}>
           <Route path="/freeBoard" element={<FreeBoard />} />
         </Route>
+
+        <Route path="/" element={<PostList />} />
+        <Route path="/post/:id" element={<PostDetail />} />
+
 
       </Routes>
       
