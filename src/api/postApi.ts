@@ -3,14 +3,9 @@ import type { Post } from "../type";
 const BASE_URL = import.meta.env.VITE_API_URL;
 
 export const getData = async (): Promise<Post[]> => {
-
-
-  const response = await axios.post(`${BASE_URL}/`);
+  const response = await axios.get(`${BASE_URL}/getPost`);
   return response.data;
-
-}
-
-
+};
 
 // const getPostDummy = [
 //     {
@@ -20,7 +15,6 @@ export const getData = async (): Promise<Post[]> => {
 //         postName: 'abc의 글입니다',
 //         view: 23
 //     },
-
 //     {
 //         id: 2,
 //         name: 'bcd',
@@ -28,7 +22,6 @@ export const getData = async (): Promise<Post[]> => {
 //         postName: 'bcd의 글입니다',
 //         view: 7000
 //     },
-
 //     {
 //         id: 3,
 //         name: 'cde',
@@ -36,6 +29,5 @@ export const getData = async (): Promise<Post[]> => {
 //         postName: 'cde의 글입니다',
 //         view: 100000
 //     },
-
 // ]
 //return Promise.resolve(getPostDummy);
