@@ -43,9 +43,9 @@ function App() {
 
          <Route path="/postPage" element={<PostPage />} />
 
-   
-        <Route path="/post/:id" element={<PostDetail />} />
-
+        <Route element={<Bar/>}>
+          <Route path="/post/:id" element={<PostDetail />} />
+        </Route>
         <Route element={<CommunityLayout />}>
           <Route path="/community" element={<CommunityBoard />} />
         </Route>
