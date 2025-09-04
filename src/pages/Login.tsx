@@ -15,21 +15,21 @@ export default function Login() {
         setUser({...user, [e.target.name]: e.target.value})
     };
 
-    const handleLogin = () => {
-        GetAuthToken(user)
-        .then((token) => {
-            if(token !== null) {
-                sessionStorage.setItem("jwt", token);
-                login();
-                navigate("/");
-            }
+    // const handleLogin = () => {
+    //     GetAuthToken(user)
+    //     .then((token) => {
+    //         if(token !== null) {
+    //             sessionStorage.setItem("jwt", token);
+    //             login();
+    //             navigate("/");
+    //         }
             
-        })
-        .catch((err) => {
-            console.log(err);
-            setToastOpen(true);
-        });
-    };
+    //     })
+    //     .catch((err) => {
+    //         console.log(err);
+    //         setToastOpen(true);
+    //     });
+    // };
 
     return (
         <>
@@ -46,14 +46,15 @@ export default function Login() {
             />
             <Button
                 color="primary"
-                onClick={handleLogin}
+               // onClick={handleLogin}
             >
                 로그인
             </Button> 
+            <button type="submit">회원가입</button>
             <Snackbar 
-                open={toastOpen}
+              //  open={toastOpen}
                 autoHideDuration={3000}
-                onClose={() => setToastOpen(false)}
+               // onClose={() => setToastOpen(false)}
                 message='로그인 실패'
             />   
         </Stack>

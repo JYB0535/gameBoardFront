@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import type { Post } from "../type";
 import { DataGrid, type GridColDef } from "@mui/x-data-grid";
-import { Box, Button } from "@mui/material";
 import { getData } from "../api/postApi";
 
 
-export default function Main() {
+export default function MainPage() {
     const [data, setData] = useState<Post[]>([]);
 
      const columns: GridColDef[] = [
@@ -13,6 +12,8 @@ export default function Main() {
         {field: 'postName', headerName: '게시물 제목', width: 200},
         {field: 'name', headerName: '작성자', width: 200},
         {field: 'date', headerName: '날짜', width: 200},
+        {field: 'view', headerName: '조회수', width: 200},
+        
         
      ]
 
@@ -27,9 +28,7 @@ export default function Main() {
         loadPostData();
     }, []) ;
 
-    const topButtonStyle = {
-        color: 'white', mx: 4
-    };
+ 
 
     return(
         <>

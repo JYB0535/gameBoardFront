@@ -3,6 +3,8 @@ export type Post = {
     name: string;
     date: number;
     postName: string;
+    view: number;
+    
 
 }
 export type User = {
