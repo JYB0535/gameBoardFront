@@ -1,12 +1,13 @@
 import './App.css'
-import { AppBar, Box, Button, Container, CssBaseline, Toolbar, Typography } from '@mui/material'
-import Main from './pages/MainPage';
 import MainPage from './pages/MainPage';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
-import { Route, Router, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Layout from './layout/Layout';
-import PostDetail from './pages/PostPage';
+import PostList from './pages/PostList';
+import PostPage from './pages/PostPage';
+import Bar from './layout/Bar';
+import FreeBoard from './pages/FreeBoard';
 
 function App() {
 
@@ -20,12 +21,22 @@ function App() {
         <Route element={<Layout />}>
           <Route path="/" element={<MainPage />} />
         </Route>
-          <Route path="/post/:postId" element={<PostDetail />} />
+         
 
         {/* Layout 없이 바로 나오는 페이지 */}
         <Route path="/signUp" element={<SignUp />} />
 
-        <Route path="/login" element ={<Login/>}/>
+        <Route element={<Bar/>}>
+          <Route path="/login" element ={<Login/>}/>
+        </Route>
+
+        <Route path="/" element={<PostList />} />
+        <Route path="/postPage" element={<PostPage/>}/>
+
+
+        <Route element={<Layout />}>
+          <Route path="/freeBoard" element={<FreeBoard />} />
+        </Route>
 
       </Routes>
       
