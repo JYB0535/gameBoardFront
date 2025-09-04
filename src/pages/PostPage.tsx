@@ -3,12 +3,14 @@ import { useParams } from "react-router-dom";
 
     const dummyPosts = {
   '1': {
+    id: '1',
     title: '첫 번째 게시글',
     author: '홍길동',
     date: '2025-09-04',
     content: '이것은 첫 번째 게시글의 내용입니다. 환영합니다!',
   },
   '2': {
+    id: '1', 
     title: '두 번째 게시글',
     author: '김철수',
     date: '2025-09-03',
@@ -17,8 +19,8 @@ import { useParams } from "react-router-dom";
 };
 
 function PostDetail() {
-  const { postId } = useParams();
-  const post = dummyPosts[postId];
+  const { id } = useParams();
+  const post = dummyPosts[id];
 
   if (!post) {
     return <Typography>해당 게시글을 찾을 수 없습니다.</Typography>;
