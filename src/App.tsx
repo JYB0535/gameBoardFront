@@ -1,6 +1,9 @@
 import './App.css'
 import { AppBar, Box, Button, Container, CssBaseline, Toolbar, Typography } from '@mui/material'
 import Main from './pages/Main';
+import { Navigate } from 'react-router-dom';
+import SignupForm from './pages/SignUp';
+import SignUp from './pages/SignUp';
 
 function App() {
 
@@ -21,7 +24,7 @@ function App() {
    
 
 
-      <Container maxWidth='xl' >
+      {/* <Container maxWidth='xl' >
         <CssBaseline />
         <AppBar position="static" >
           <Toolbar>
@@ -29,15 +32,15 @@ function App() {
               게임게시판
             </Typography>
                <Box sx={{justifyContent: 'center', flexGrow: 1}}>
-                <Button sx={topButtonStyle}>홈 </Button>
-                <Button sx={topButtonStyle}>자유 게시판 </Button>
-                <Button sx={topButtonStyle}>공략 게시판 </Button>
-                <Button sx={topButtonStyle}>질문 게시판 </Button>
-                <Button sx={topButtonStyle}>정보공유 게시판 </Button>
-                <Button sx={topButtonStyle}>팬아트 게시판 </Button>
-              
+                <Button sx={topButtonStyle} onClick={() => Navigate('/')}>홈</Button>
+                <Button sx={topButtonStyle} onClick={() => Navigate('/free')}>자유 게시판</Button>
+                <Button sx={topButtonStyle} onClick={() => Navigate('/guide')}>공략 게시판</Button>
+                <Button sx={topButtonStyle} onClick={() => Navigate('/question')}>질문 게시판</Button>
+                <Button sx={topButtonStyle} onClick={() => Navigate('/info')}>정보공유 게시판</Button>
+                <Button sx={topButtonStyle} onClick={() => Navigate('/fanart')}>팬아트 게시판</Button>
               </Box>
-               <Button sx={topButtonStyle}>로그인</Button>
+                <Button sx={topButtonStyle} onClick={() => Navigate('/Login')}>로그인</Button>
+
           </Toolbar>
       <img 
             src="메이플.jpg"
@@ -46,8 +49,8 @@ function App() {
       />
          <Main/>
       </AppBar> 
-      </Container>
-
+      </Container> */}
+    <SignUp />
 
     </>
 

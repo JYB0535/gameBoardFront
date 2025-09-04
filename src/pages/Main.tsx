@@ -39,6 +39,9 @@ export default function Main() {
                 getRowId={row => row.id} //열 하나 가지고 와서 그 열의 아이디 반환
                 disableRowSelectionOnClick={true}
                 showToolbar
+                onRowClick={(params) => {
+                console.log('클릭한 행 데이터:', params.row);
+                }}
             />
        
     
