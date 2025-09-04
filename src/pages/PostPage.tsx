@@ -1,43 +1,82 @@
-import { Box, Divider, Paper, Typography } from "@mui/material";
-import { useParams } from "react-router-dom";
+import { useState } from "react";
 
-    const dummyPosts = {
-  '1': {
-    id: '1',
-    title: '첫 번째 게시글',
-    author: '홍길동',
-    date: '2025-09-04',
-    content: '이것은 첫 번째 게시글의 내용입니다. 환영합니다!',
-  },
-  '2': {
-    id: '1', 
-    title: '두 번째 게시글',
-    author: '김철수',
-    date: '2025-09-03',
-    content: '두 번째 글입니다. 공략 팁을 공유합니다!',
-  },
-};
+export default function PostPage() {
+  const [form, setForm] = useState({
+    title: "",
+    content: "",
+    image: null as File | null,
+  });
 
-function PostDetail() {
-  const { id } = useParams();
-  const post = dummyPosts[id];
+  // 입력값 변경 핸들러
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
-  if (!post) {
-    return <Typography>해당 게시글을 찾을 수 없습니다.</Typography>;
-  }
+  // 이미지 파일 변경 핸들러
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setForm((prev) => ({
+        ...prev,
+        image: e.target.files![0],
+      }));
+    }
+  };
+
+  // 제출 핸들러
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("작성된 글:", form);
+    // 서버 전송 로직
+  };
 
   return (
-    <Paper elevation={3} sx={{ padding: 4, marginTop: 4 }}>
-      <Typography variant="h4" gutterBottom>{post.title}</Typography>
-      <Typography variant="subtitle1" color="text.secondary">
-        작성자: {post.author} | 작성일: {post.date}
-      </Typography>
-      <Divider sx={{ my: 2 }} />
-      <Box sx={{ whiteSpace: 'pre-line' }}>
-        <Typography variant="body1">{post.content}</Typography>
-      </Box>
-    </Paper>
+    <div style={{ maxWidth: "1000px", maxHeight:"1000px", margin: "0 auto" }}>
+      <h2>글 작성</h2>
+      <form onSubmit={handleSubmit}>
+        {/* 제목 */}
+        <div>
+          <input
+            type="text"
+            name="title"
+            placeholder="제목"
+            value={form.title}
+            onChange={handleChange}
+            style={{ width: "500px", height: "30px", padding: "8px", marginBottom: "12px" }}
+            required // 필수 입력값이라는 의미입니다!
+          />
+        </div>
+
+        {/* 내용 */}
+        <div>
+          <textarea
+            name="content"
+            placeholder="내용을 입력하세요"
+            value={form.content}
+            onChange={handleChange}
+            style={{
+              width: "500px",
+              height: "700px",
+              padding: "8px",
+              marginBottom: "12px",
+            }}
+            required
+          />
+        </div>
+
+        {/* 이미지 업로드 */}
+        <div style={{ marginBottom: "12px" }}>
+          <input type="file" accept="image/*" onChange={handleFileChange} />
+          {form.image && <p>선택된 파일: {form.image.name}</p>}
+        </div>
+
+        <button type="submit">등록</button>
+      </form>
+    </div>
   );
 }
-
-export default PostDetail;

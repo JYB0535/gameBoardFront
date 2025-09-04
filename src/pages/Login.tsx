@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import type { User } from "../type";
 import { Button, Snackbar, Stack, TextField } from "@mui/material";
 
@@ -58,6 +58,7 @@ export default function Login() {
                 message='로그인 실패'
             />   
         </Stack>
+   
         </>
     )
 }
