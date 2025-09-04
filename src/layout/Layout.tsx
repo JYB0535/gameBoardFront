@@ -1,5 +1,5 @@
 import { AppBar, Box, Button, Container, CssBaseline, Toolbar, Typography } from "@mui/material";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 export default function Layout() {
 
@@ -22,15 +22,16 @@ export default function Layout() {
             <Typography variant="h6" sx={{mr: 2}} >
               게임게시판
             </Typography>
-               <Box sx={{justifyContent: 'center', flexGrow: 1}}>
-                <Button sx={topButtonStyle}>홈 </Button>
-                <Button sx={topButtonStyle}>자유 게시판 </Button>
-                <Button sx={topButtonStyle}>공략 게시판 </Button>
-                <Button sx={topButtonStyle}>정보공유 게시판 </Button>
-                <Button sx={topButtonStyle}>팬아트 게시판 </Button>
-                <Button sx={topButtonStyle}>질문 게시판 </Button>
-              </Box>
-               <Button sx={topButtonStyle}>로그인</Button>
+               <Box sx={{ justifyContent: 'center', flexGrow: 1 }}>
+                <Button component={Link} to="/" sx={topButtonStyle}>홈</Button>
+                <Button component={Link} to="/free" sx={topButtonStyle}>자유 게시판</Button>
+                <Button component={Link} to="/guide" sx={topButtonStyle}>공략 게시판</Button>
+                <Button component={Link} to="/info" sx={topButtonStyle}>정보공유 게시판</Button>
+                <Button component={Link} to="/fanart" sx={topButtonStyle}>팬아트 게시판</Button>
+                <Button component={Link} to="/question" sx={topButtonStyle}>질문 게시판</Button>
+               </Box>
+                <Button component={Link} to="/login" sx={topButtonStyle}>로그인</Button>
+
           </Toolbar>
       <img 
             src="메이플.jpg"
