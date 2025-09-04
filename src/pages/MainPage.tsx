@@ -33,7 +33,7 @@ export default function MainPage() {
 
     const handleRowClick = (params: any) => {
     const postId = params.row.id;
-    Navigate(`/post/${postId}`);
+    navigate(`/post/${postId}`);
   };
 
 
