@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import type { Post } from "../type";
 import { DataGrid, type GridColDef } from "@mui/x-data-grid";
 import { getData } from "../api/postApi";
-import { Navigate, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 
 
 export default function MainPage() {
