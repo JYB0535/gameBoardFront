@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import { Route, Routes } from "react-router-dom";
 //import PostList from './pages/PostList';
+
 import Bar from "./layout/Bar";
 import FreeBoard from "./pages/FreeBoard";
 import PostDetail from "./pages/PostDetail";

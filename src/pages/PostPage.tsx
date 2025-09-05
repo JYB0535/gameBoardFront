@@ -6,16 +6,24 @@ import type { Post } from "../type";
 import { addPost, getData, } from "../api/postApi";
 
 
-export default function PostPage() {
-    const [open, setOpen] = useState(false);
-    const[post, setPost] = useState<Post>({
-        name: '',
-        date: '',
-        postName: '',
-        view: 0,
-        contents: '',
-        img: ''
-    });
+// import { useState } from "react";
+// import { Post } from "../type";
+
+
+// export default function PostPage() {
+//     const [open, setOpen] = useState(false);
+//     const[post, setPost] = useState<Post>({
+//         name: '',
+//         date: '',
+//         postName: '',
+//         view: 0,
+//         contents: '',
+//         img: ''
+//     });
+
+//     return(
+//         "gljj"
+//     );
 
     const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
