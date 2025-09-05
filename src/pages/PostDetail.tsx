@@ -7,10 +7,6 @@ import { Button, TextField } from "@mui/material";
 import EditPost from "./EditPost";
 
 
-type EditPostprops = {
-    postData: Post;
-    loadPostData: () => void;
-}
 
 export default function PostDetail() {
   const [data, setData] = useState<Post[]>([]);
@@ -65,7 +61,7 @@ return (
       style={{
         width: "800px",
         minHeight: "500px",
-        marginTop: "10px",
+        marginBottom: "280px",
         padding: "30px",
         border: "solid #ddd",
         borderRadius: "4px",
@@ -108,6 +104,22 @@ return (
       </div>
 
       {/* 댓글 입력 영역 */}
+      
+    </div>
+
+    {/* 댓글 목록 */}
+    
+    <h3 style={{ fontSize: "16px", marginBottom: "10px" }}>
+  댓글 ({post.comments?.length || 0})
+</h3>
+
+{post.comments?.length ? (
+  post.comments.map((comment, index) => (
+    <Comment key={index} comment={comment} />
+  ))
+) : (
+  <p style={{ color: "#999", fontSize: "14px" }}>첫 댓글을 작성해보세요 ✍️</p>
+)}
       <div
         style={{
           marginBottom: "30px",
@@ -116,19 +128,7 @@ return (
         <TextField label="댓글을 입력해주세요." />
         <button style={{ marginLeft: "", }}>등록</button>
       </div>
-    </div>
-
-    {/* 댓글 목록 */}
-    <div
-      style={{
-        borderTop: "2px solid #333",
-        paddingTop: "20px",
-        width: "800px",
-        margin: "0 auto",
-      }}
-    >
       <h3 style={{ fontSize: "16px", marginBottom: "10px" }}>
-        댓글 ({post.comments?.length || 0})
       </h3>
 
       {post.comments?.map((comment, index) => (
