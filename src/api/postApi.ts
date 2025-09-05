@@ -7,6 +7,22 @@ export const getData = async (): Promise<Post[]> => {
   return response.data;
 };
 
+export const addPost = async (post: Post): Promise<Post> => {
+  const formData = new FormData();
+  formData.append("name", post.name);
+  formData.append("date", post.date);
+  formData.append("postName", post.postName);
+  formData.append("view", String(post.view)); // 숫자는 문자열로 변환
+  formData.append("contents", post.contents);
+  if (post.img) formData.append("image", post.img); // 이미지 포함
+
+  const response = await axios.post(`${BASE_URL}/postPage`, formData);
+  return response.data;
+
+};
+
+
+
 // const getPostDummy = [
 //     {
 //         id: 1,
