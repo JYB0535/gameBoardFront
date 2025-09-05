@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import type { Post } from "../type";
-import { getData } from "../api/postApi";
+import { deletePost, getData } from "../api/postApi";
 
 // const dummyPosts = [
 //   { id: 1,
@@ -120,7 +120,7 @@ export default function PostDetail() {
       
 
       {/*각 버튼 영역 */}
-      <button>수정</button>  <button>삭제</button>  <button>목록</button>
+      <button>수정</button>  <button onClick={deletePost}>삭제</button>  <button>목록</button>
       
     </div>
   </div>

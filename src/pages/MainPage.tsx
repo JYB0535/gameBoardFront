@@ -3,6 +3,7 @@ import type { Post } from "../type";
 import { DataGrid, type GridColDef } from "@mui/x-data-grid";
 import { getData } from "../api/postApi";
 import { useNavigate } from "react-router-dom";
+import PostPage from "./PostPage";
 
 export default function MainPage() {
   const [data, setData] = useState<Post[]>([]);
@@ -40,9 +41,11 @@ export default function MainPage() {
         showToolbar
         onRowClick={handleRowClick}
       />
-      <button type="button" onClick={() => navigate("/postPage")}>
+      {/* //<PostPage /> */}
+      {/* <button type="button" onClick={() => navigate("/postPage")}>
         글 작성
-      </button>
+      </button> */}
+      <PostPage />
     </>
   );
 }
