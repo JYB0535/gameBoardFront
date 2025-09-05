@@ -50,7 +50,7 @@ export default function PostDetail() {
 
   useEffect(() => {
     loadPostData();
-  }, []);
+  }, []);    
 
   const post = data.find((p) => p.id === Number(id));
 
