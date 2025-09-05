@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import type { Post } from "../type";
 import { deletePost, getData } from "../api/postApi";
 import { TextField } from "@mui/material";
@@ -8,6 +8,7 @@ import { TextField } from "@mui/material";
 
 export default function PostDetail() {
   const [data, setData] = useState<Post[]>([]);
+  const navigate = useNavigate();
 
   const { id } = useParams<{ id: string }>();
 
@@ -20,6 +21,12 @@ export default function PostDetail() {
   useEffect(() => {
     loadPostData();
   }, []);
+
+  const handleDelete = async (id: number) => {
+    await deletePost(id);
+    setData(data);
+    navigate(`/`);
+  };
 
   const post = data.find((p) => p.id === Number(id));
 
@@ -129,8 +136,9 @@ return (
       {/* 버튼 영역 */}
       <div style={{ marginTop: "20px" }}>
         <button style={{ marginRight: "10px" }}>수정</button>
-        <button style={{ marginRight: "10px" }}>삭제</button>
+        <button onClick={() => handleDelete(post.id)} style={{ marginRight: "10px" }}>삭제</button>
         <button>목록</button>
+
       </div>
     </div>
   </>

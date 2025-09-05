@@ -1,29 +1,24 @@
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 import PostDialogContent from "./PostDialogContent";
 import type { Post } from "../type";
 import { addPost, getData, } from "../api/postApi";
 
-
 // import { useState } from "react";
 // import { Post } from "../type";
 
 
-// export default function PostPage() {
-//     const [open, setOpen] = useState(false);
-//     const[post, setPost] = useState<Post>({
-//         name: '',
-//         date: '',
-//         postName: '',
-//         view: 0,
-//         contents: '',
-//         img: ''
-//     });
-
-//     return(
-//         "gljj"
-//     );
+ export default function PostPage() {
+   
+     const [open, setOpen] = useState(false);
+     const[post, setPost] = useState<Post>({
+         name: '',
+         date: '',
+         postName: '',
+         view: 0,
+         contents: '',
+         img: ''
+     });
 
     const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
@@ -37,6 +32,7 @@ import { addPost, getData, } from "../api/postApi";
     const handleSave = async () => {
         console.log("저장 버튼 클릭됐다.");
         await addPost(post);
+ 
         getData();
 
         setPost({
@@ -47,12 +43,12 @@ import { addPost, getData, } from "../api/postApi";
             contents: '',
             img: ''
         });
+
         handleClose();
     }
     
     return(
         <>
-           
             <Button onClick={handleOpen}>글쓰기</Button>
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>글쓰기</DialogTitle>
