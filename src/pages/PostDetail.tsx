@@ -56,16 +56,73 @@ export default function PostDetail() {
 
   if (!post) return <h2>해당 글을 찾을 수 없습니다.</h2>;
 
-  return (
-    <div style={{ maxWidth: 600, margin: "0 auto", padding: 20 }}>
-      <h5 style={{ maxWidth: 600 }}>{post.postName}</h5>
-      <h5>작성자: {post.name}</h5>
+ return (
+  <div
+    style={{
+      maxWidth: "100%",
+      maxHeight: "100%",
+      margin: "40px auto",
+      padding: "30px",
+      border: "1px solid #ddd",
+      borderRadius: "8px",
+      fontFamily: "'Noto Sans KR', sans-serif",
+      backgroundColor: "#aaa",
+    }}
+  >
+    {/* 게시판 정보 헤더 */}
+    <div style={{ display: "flex", justifyContent: "space-between", maxHeight: "1000px", marginBottom: "10px", fontSize: "14px", color: "#888" }}>
+      <div>{post.boardName || "게시판 이름"}</div>
+      <div>{post.date || "2025-09-05 08:36"}</div>
+      <div>조회: {post.views}</div>
+    </div>
+
+    {/* 카테고리 (예: [블래스터]) */}
+    <div style={{ fontSize: "14px", color: "#666", marginBottom: "10px" }}>
+      [{post.category || "카테고리"}]
+    </div>
+
+    {/* 제목 */}
+    <h2 style={{ color: "#c00", fontSize: "22px", marginBottom: "20px" }}>
+      {post.postName || "게시글 제목"}
+    </h2>
+
+    {/* 본문 이미지 */}
+    {post.img && (
       <img
         src={post.img}
-        alt={`${post.postName} 이미지`}
-        style={{ width: "100%", height: "auto", marginBottom: 20 }}
+        alt="본문 이미지"
+        style={{
+          width: "100%",
+          height: "500px",
+          marginBottom: "20px",
+          borderRadius: "10px",
+        }}
       />
-      <p style={{ width: "400px", height: "400px" }}>{post.contents}</p>
+    )}
+
+    {/* 본문 내용 */}
+    <div
+      style={{
+        fontSize: "16px",
+        lineHeight: "1.7",
+        color: "#333",
+        whiteSpace: "pre-wrap",
+        marginBottom: "30px",
+        
+      }}
+    >
+      {post.contents || "게시글 본문 내용"}
     </div>
-  );
+
+    {/* 댓글 영역 (선택) */}
+    <div style={{ fontSize: "14px", color: "#999", borderTop: "1px solid #eee", paddingTop: "15px" }}>
+      댓글을 입력해주세요.({post.comments?.length}) <button>등록</button>
+      
+
+      {/*각 버튼 영역 */}
+      <button>수정</button>  <button>삭제</button>  <button>목록</button>
+      
+    </div>
+  </div>
+);
 }

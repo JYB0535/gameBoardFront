@@ -36,7 +36,7 @@ export default function PostPage() {
   };
 
   return (
-    <div style={{ maxWidth: "1000px", maxHeight:"1000px", margin: "0 auto" }}>
+    <div style={{ maxWidth: "1000px", maxHeight:"800px", margin: "0 auto" }}>
       <h2>글 작성</h2>
       <form onSubmit={handleSubmit}>
         {/* 제목 */}
@@ -61,7 +61,7 @@ export default function PostPage() {
             onChange={handleChange}
             style={{
               width: "500px",
-              height: "700px",
+              height: "400px",
               padding: "8px",
               marginBottom: "12px",
             }}

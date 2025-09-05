@@ -34,9 +34,9 @@ function App() {
         <Route element={<FreeLayout />}>
           <Route path="/freeBoard" element={<FreeBoard />} />
         </Route>
-
-        <Route path="/postPage" element={<PostPage />} />
-
+        <Route element={<Bar />}>
+          <Route path="/postPage" element={<PostPage />} />
+        </Route>
         <Route element={<Bar />}>
           <Route path="/post/:id" element={<PostDetail />} />
         </Route>
