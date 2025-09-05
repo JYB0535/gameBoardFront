@@ -7,18 +7,15 @@ import { Button, TextField } from "@mui/material";
 import EditPost from "./EditPost";
 
 
+type EditPostprops = {
+    postData: Post;
+    loadPostData: () => void;
+}
 
 export default function PostDetail() {
   const [data, setData] = useState<Post[]>([]);
   const navigate = useNavigate();
-  const [editOpen, setEditOpen] = useState(false);
-
-
   const { id } = useParams<{ id: string }>();
-
-
- 
-
 
   const loadPostData = () => {
     getData()
@@ -143,8 +140,8 @@ return (
 
       {/* 버튼 영역 */}
       <div style={{ marginTop: "20px" }} >
-       
-        <Button style={{ marginRight: "10px" }}>수정</Button>
+        <EditPost postData={post} loadPostData={loadPostData} />
+        {/* <Button style={{ marginRight: "10px" }}>수정</Button> */}
         <Button onClick={() => handleDelete(post.id)} style={{ marginRight: "10px" }}>삭제</Button>
   
         <Button component={Link} to="/" style={{ marginRight: "10px" }}>목록</Button>

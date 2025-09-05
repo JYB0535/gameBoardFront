@@ -1,7 +1,7 @@
 import { useState } from "react";
 import type { Post } from "../type";
 import { updatePost } from "../api/postApi";
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Tooltip } from "@mui/material";
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 import PostDialogContent from "./PostDialogContent";
 
 
@@ -68,9 +68,9 @@ export default function EditPost({postData, loadPostData}: EditPostprops) {
 
     return (
         <> 
-        
+            <Button onClick={handleOpen}>수정</Button>
             <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>New Car</DialogTitle> 
+                <DialogTitle>수정</DialogTitle> 
                 <DialogContent>
                     <PostDialogContent
                         post={post}
