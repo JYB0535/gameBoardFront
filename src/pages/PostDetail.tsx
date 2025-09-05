@@ -1,16 +1,24 @@
 
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import type { Post } from "../type";
 import { deletePost, getData } from "../api/postApi";
-import { TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
+import EditPost from "./EditPost";
+
 
 
 export default function PostDetail() {
   const [data, setData] = useState<Post[]>([]);
   const navigate = useNavigate();
+  const [editOpen, setEditOpen] = useState(false);
+
 
   const { id } = useParams<{ id: string }>();
+
+
+ 
+
 
   const loadPostData = () => {
     getData()
@@ -134,10 +142,12 @@ return (
       ))}
 
       {/* 버튼 영역 */}
-      <div style={{ marginTop: "20px" }}>
-        <button style={{ marginRight: "10px" }}>수정</button>
-        <button onClick={() => handleDelete(post.id)} style={{ marginRight: "10px" }}>삭제</button>
-        <button>목록</button>
+      <div style={{ marginTop: "20px" }} >
+       
+        <Button style={{ marginRight: "10px" }}>수정</Button>
+        <Button onClick={() => handleDelete(post.id)} style={{ marginRight: "10px" }}>삭제</Button>
+  
+        <Button component={Link} to="/" style={{ marginRight: "10px" }}>목록</Button>
 
       </div>
     </div>

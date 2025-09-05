@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import type { Post } from "../type";
-import { DataGrid, type GridColDef } from "@mui/x-data-grid";
+import { DataGrid, type GridCellParams, type GridColDef } from "@mui/x-data-grid";
 import { getData } from "../api/postApi";
 import { useNavigate } from "react-router-dom";
 import PostPage from "./PostPage";
+import EditPost from "./EditPost";
+import { IconButton } from "@mui/material"
 
 export default function MainPage() {
   const [data, setData] = useState<Post[]>([]);
@@ -14,6 +16,7 @@ export default function MainPage() {
     { field: "name", headerName: "작성자", width: 200 },
     { field: "date", headerName: "날짜", width: 200 },
     { field: "view", headerName: "조회수", width: 200 },
+  
   ];
 
   const loadPostData = () => {

@@ -17,3 +17,8 @@ export const deletePost = async(id:number): Promise<number> => {
   const response = await axios.delete(`${BASE_URL}/post/${id}`);
   return response.data;
 }
+
+export const updatePost = async (post: Post): Promise<Post> => {
+  const response = await axios.put(`${BASE_URL}/post`, post);
+  return response.data;
+}
