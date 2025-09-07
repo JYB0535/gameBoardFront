@@ -1,16 +1,24 @@
 export type Post = {
-  id: number;
-  name: string;
+  id?: number;
+  nickname: string;
   date: string;
   postName: string;
-  view: number;
+  // view: number;
   contents: string;
   img: string;
   //comments: number;
 };
 
 export type User = {
+  id?: number;
   username: string;
   password: string;
+  nickname: string;
   email: string;
+  role: string;
+};
+
+export type Login = {
+  username: string;
+  password: string;
 };

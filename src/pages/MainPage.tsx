@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import type { Post } from "../type";
-import { DataGrid, type GridCellParams, type GridColDef } from "@mui/x-data-grid";
+import {
+  DataGrid,
+  type GridColDef,
+  type GridRowParams,
+} from "@mui/x-data-grid";
 import { getData } from "../api/postApi";
 import { useNavigate } from "react-router-dom";
 import PostPage from "./PostPage";
-import EditPost from "./EditPost";
-import { IconButton } from "@mui/material"
 
 export default function MainPage() {
   const [data, setData] = useState<Post[]>([]);
@@ -13,10 +15,9 @@ export default function MainPage() {
   const columns: GridColDef[] = [
     { field: "id", headerName: "게시판 번호", width: 200 },
     { field: "postName", headerName: "게시물 제목", width: 200 },
-    { field: "name", headerName: "작성자", width: 200 },
+    { field: "nickname", headerName: "작성자", width: 200 },
     { field: "date", headerName: "날짜", width: 200 },
-    { field: "view", headerName: "조회수", width: 200 },
-  
+    // { field: "view", headerName: "조회수", width: 200 },
   ];
 
   const loadPostData = () => {
@@ -29,7 +30,11 @@ export default function MainPage() {
     loadPostData();
   }, []);
 
-  const handleRowClick = (params: any) => {
+  const postPageCallback = () => {
+    loadPostData();
+  };
+
+  const handleRowClick = (params: GridRowParams<any>) => {
     const postId = params.row.id;
     navigate(`/post/${postId}`);
   };
@@ -42,13 +47,15 @@ export default function MainPage() {
         getRowId={(row) => row.id} //열 하나 가지고 와서 그 열의 아이디 반환
         disableRowSelectionOnClick={true}
         showToolbar
-        onRowClick={handleRowClick}
+        onRowClick={(params) => {
+          handleRowClick(params);
+        }}
       />
       {/* //<PostPage /> */}
       {/* <button type="button" onClick={() => navigate("/postPage")}>
         글 작성
       </button> */}
-      <PostPage />
+      <PostPage callback={postPageCallback} />
     </>
   );
 }
