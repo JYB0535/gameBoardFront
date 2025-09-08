@@ -48,8 +48,6 @@ export async function checkNicknameExists(nickname: string): Promise<boolean> {
 }
 
 
-
-
 export const userInformation = async (): Promise<User> => {
   const response = await axios.get(
     `${BASE_URL}/user/authentication`,
