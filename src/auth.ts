@@ -10,7 +10,11 @@ type AuthStore = {
 export const useAuthStore = create<AuthStore> ((set) => ({ //객체 바로 반환할건데 헷갈릴까봐 소괄호에 중괄호
     isAuthenticated: !!sessionStorage.getItem("jwt"), //느낌표 하나는 펄시 하나더는 트루시? //세션스토리지에 토큰이 남아있는지 체크 //
     userLogin: () => set({isAuthenticated: true}),
-    userLogout: () => set({isAuthenticated: false})
+    userLogout: () => {
+        sessionStorage.removeItem("jwt");
+        set({isAuthenticated: false})
+    }
+
 }));
 
 

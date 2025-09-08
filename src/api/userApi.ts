@@ -25,6 +25,7 @@ export const getAuthToken = async (login: Login) => {        //바디에 담을 
 
 export const login = async (login: Login): Promise<Login> => {
   const response = await axios.post(`${BASE_URL}/user/login`, login);
+  //return response.headers.authorization; //
   return response.data;
 };
 
