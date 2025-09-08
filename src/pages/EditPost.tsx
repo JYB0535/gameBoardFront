@@ -12,17 +12,15 @@ import PostDialogContent from "./PostDialogContent";
 
 type EditPostprops = {
   postData: Post;
-  loadPostData: () => void;
+  updateCallback: () => void;
 };
 
-export default function EditPost({ postData, loadPostData }: EditPostprops) {
+export default function EditPost({ postData, updateCallback }: EditPostprops) {
   const [open, setOpen] = useState(false);
   const [post, setPost] = useState<Post>({
-    id: 0,
     nickname: "",
     date: "",
     postName: "",
-    //view: 0,
     contents: "",
     img: "",
   });
@@ -48,14 +46,13 @@ export default function EditPost({ postData, loadPostData }: EditPostprops) {
     await updatePost(post);
     //업데이트 되고 나면 로드카데이터 호출;
     //car list reload
-    loadPostData();
+    updateCallback();
 
     setPost({
       id: 0,
       nickname: "",
       date: "",
       postName: "",
-      //view: 0,
       contents: "",
       img: "",
     });

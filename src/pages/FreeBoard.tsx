@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Post } from "../type";
 import { DataGrid, type GridColDef } from "@mui/x-data-grid";
-import { getData } from "../api/postApi";
+import { selectPost } from "../api/postApi";
 import { useNavigate } from "react-router-dom";
 
 export default function FreeBoard() {
@@ -17,7 +17,7 @@ export default function FreeBoard() {
   ];
 
   const loadPostData = () => {
-    getData()
+    selectPost()
       .then((res) => setData(res))
       .catch((err) => console.log(err));
   };

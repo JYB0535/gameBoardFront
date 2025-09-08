@@ -5,7 +5,7 @@ import {
   type GridColDef,
   type GridRowParams,
 } from "@mui/x-data-grid";
-import { getData } from "../api/postApi";
+import { selectPost } from "../api/postApi";
 import { useNavigate } from "react-router-dom";
 import PostPage from "./PostPage";
 
@@ -21,7 +21,7 @@ export default function MainPage() {
   ];
 
   const loadPostData = () => {
-    getData()
+    selectPost()
       .then((res) => setData(res))
       .catch((err) => console.log(err));
   };
@@ -34,6 +34,10 @@ export default function MainPage() {
     loadPostData();
   };
 
+  /**
+   * 데이터 그리드의 행을 클릭하고 params row id 를 이동시
+   * @param params
+   */
   const handleRowClick = (params: GridRowParams<any>) => {
     const postId = params.row.id;
     navigate(`/post/${postId}`);

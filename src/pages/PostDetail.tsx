@@ -1,37 +1,73 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import type { Post, User } from "../type";
-import { deletePost, getData } from "../api/postApi";
+import { deletePost, getPost, selectPost } from "../api/postApi";
 import { Button, TextField } from "@mui/material";
 import EditPost from "./EditPost";
 import { useAuthStore } from "../auth";
+import { userInformation } from "../api/userApi";
 
 export default function PostDetail() {
-  const [data, setData] = useState<Post[]>([]);
+  const [post, setPost] = useState<Post>({
+    contents: "",
+    date: "",
+    img: "",
+    nickname: "",
+    postName: "",
+  });
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
 
-  const { isAuthenticated, setIsAuthenticated } = useAuthStore();
+  // const { isAuthenticated, setIsAuthenticated } = useAuthStore();
+  const [isEqualNickname, seIsEqualNickname] = useState<boolean>(false);
 
-  const loadPostData = () => {
-    getData()
-      .then((res) => setData(res))
-      .catch((err) => console.log(err));
+  const [userDto, setUserDto] = useState<User>();
+
+  const getUserInformation = async () => {
+    try {
+      const res = await userInformation();
+      setUserDto(res);
+    } catch (e) {
+      console.log("데이터를 제대로 못 받아왔습니다.");
+    }
   };
 
+  const getPostData = () => {
+    if (id) {
+      getPost(id)
+        .then((res) => setPost(res))
+        .catch((err) => console.log(err));
+    } else {
+      alert("글번호가 없습니다.");
+    }
+  };
+
+  // 1. 처음 실행하면 데이터를 로드하고, 게시글 정보를 가져온다.
   useEffect(() => {
-    loadPostData();
+    getPostData();
   }, []);
+
+  // 2. 셋 포스트 작동 후 유저 정보 가져옴
+  useEffect(() => {
+    getUserInformation();
+  }, [post]);
+
+  // 3. 유저 정보 변경 후 작동
+  useEffect(() => {
+    if (userDto) {
+      seIsEqualNickname(userDto.nickname === post.nickname);
+    } else {
+      seIsEqualNickname(false);
+    }
+  }, [userDto]);
+
+  useEffect(() => {}, []);
 
   const handleDelete = async (id: number) => {
     await deletePost(id);
-    setData(data);
+    setPost(post);
     navigate(`/`);
   };
-
-  const post = data.find((p) => p.id === Number(id));
-
-  if (!post) return <h2>해당 글을 찾을 수 없습니다.</h2>;
 
   return (
     <>
@@ -120,7 +156,7 @@ export default function PostDetail() {
 
       {/* 댓글 목록 */}
 
-      <h3 style={{ fontSize: "16px", marginBottom: "10px" }}>
+      {/* <h3 style={{ fontSize: "16px", marginBottom: "10px" }}>
         댓글 ({post.comments?.length || 0})
       </h3>
 
@@ -147,13 +183,13 @@ export default function PostDetail() {
         <div key={index} style={{ marginBottom: "15px" }}>
           <Comment comment={comment} />
         </div>
-      ))}
+      ))} */}
 
       {/* 버튼 영역 */}
       <div style={{ marginTop: "20px" }}>
-        {isAuthenticated ? (
+        {isEqualNickname ? (
           <>
-            <EditPost postData={post} loadPostData={loadPostData} />
+            <EditPost postData={post} updateCallback={getPostData} />
 
             <Button
               onClick={() => {

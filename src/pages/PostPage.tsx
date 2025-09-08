@@ -20,7 +20,7 @@ type Postprops = {
 };
 
 export default function PostPage({ callback }: Postprops) {
-  const { isAuthenticated, userLogout } = useAuthStore();
+  const { isAuthenticated } = useAuthStore();
   const [open, setOpen] = useState(false);
   const [post, setPost] = useState<Post>({
     nickname: "",
@@ -32,10 +32,17 @@ export default function PostPage({ callback }: Postprops) {
   });
   const [userDto, setUserDto] = useState<User>();
 
-  useEffect(() => {
-    userInformation().then((res) => {
+  const getUserInformation = async () => {
+    try {
+      const res = await userInformation();
       setUserDto(res);
-    });
+    } catch (e) {
+      console.log("데이터를 제대로 못 받아왔습니다.");
+    }
+  };
+
+  useEffect(() => {
+    getUserInformation();
   }, []);
 
   useEffect(() => {
@@ -67,7 +74,12 @@ export default function PostPage({ callback }: Postprops) {
     setPost({ ...post, [name]: value });
   };
 
+  /**
+   * 글쓰기 버튼을 누르면 글쓰기 모달이 보이게 하는 함수
+   */
   const handleOpen = () => {
+    // 모달을 열 때마다 사용자의 데이터를 받아오도록 함수 실행
+    getUserInformation();
     setOpen(true);
   };
   const handleClose = () => setOpen(false);
@@ -92,11 +104,8 @@ export default function PostPage({ callback }: Postprops) {
 
   return (
     <>
-    {isAuthenticated ? ( 
-      <Button onClick={handleOpen}>글쓰기</Button>) : (
-            <></>
-    )}
-      
+      {isAuthenticated ? <Button onClick={handleOpen}>글쓰기</Button> : <></>}
+
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>글쓰기</DialogTitle>
         <DialogContent>
