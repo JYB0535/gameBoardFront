@@ -10,6 +10,7 @@ import PostDialogContent from "./PostDialogContent";
 import type { Post, User } from "../type";
 import { addPost } from "../api/postApi";
 import { userInformation } from "../api/userApi";
+import { useAuthStore } from "../auth";
 
 // import { useState } from "react";
 // import { Post } from "../type";
@@ -19,6 +20,7 @@ type Postprops = {
 };
 
 export default function PostPage({ callback }: Postprops) {
+  const { isAuthenticated, userLogout } = useAuthStore();
   const [open, setOpen] = useState(false);
   const [post, setPost] = useState<Post>({
     nickname: "",
@@ -90,7 +92,11 @@ export default function PostPage({ callback }: Postprops) {
 
   return (
     <>
-      <Button onClick={handleOpen}>글쓰기</Button>
+    {isAuthenticated ? ( 
+      <Button onClick={handleOpen}>글쓰기</Button>) : (
+            <></>
+    )}
+      
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>글쓰기</DialogTitle>
         <DialogContent>
