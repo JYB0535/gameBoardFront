@@ -45,7 +45,12 @@ const SignUp = () => {
   const handleSubmit = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
-    if (usernameValid === false || nicknameValid === false) {
+    const { username, password, nickname, email } = signUpDto;
+    if (!username || !password || !nickname || !email) {
+      alert("모든 항목을 입력해주세요.");
+      return;
+    }
+    if (usernameValid !== true || nicknameValid !== true) {
       alert("중복 확인을 먼저 해주세요.");
       return;
     }
@@ -68,7 +73,7 @@ const SignUp = () => {
           placeholder="ID"
           onChange={handleChange}
           value={signUpDto.username}
-          style={{ padding: "8px", flex: 1 }}
+          style={{ padding: "8px",flex: 1, }}
         />
         <button type="button" onClick={handleUsernameCheck}>중복 확인</button>
       </div>
@@ -79,25 +84,25 @@ const SignUp = () => {
           placeholder="사용자 이름"
           onChange={handleChange}
           value={signUpDto.nickname}
-          style={{ padding: "8px", flex: 1 }}
+          style={{ padding: "8px", flex: 1, }}
         />
         <button type="button" onClick={handleNicknameCheck}>중복 확인</button>
       </div>
-      <input
-        name="password"
-        type="password"
-        placeholder="비밀번호"
-        onChange={handleChange}
-        value={signUpDto.password}
-        style={{ padding: "8px" }}
+        <input
+          name="password"
+          type="password"
+          placeholder="비밀번호"
+          onChange={handleChange}
+          value={signUpDto.password}
+          style={{ padding: "8px", }}
       />
-      <input
-        name="email"
-        type="email"
-        placeholder="이메일"
-        onChange={handleChange}
-        value={signUpDto.email}
-        style={{ padding: "8px" }}
+        <input
+          name="email"
+          type="email"
+          placeholder="이메일"
+          onChange={handleChange}
+          value={signUpDto.email}
+          style={{ padding: "8px", }}
       />
       <button
         type="submit"

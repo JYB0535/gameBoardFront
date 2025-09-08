@@ -22,17 +22,16 @@ export const signUp = async (user: User): Promise<User> => {
 };
 
 export async function checkUsernameExists(username: string): Promise<boolean> {
-  const res = await fetch(`/api/check-username?username=${username}`);
+  const res = await fetch(`${BASE_URL}/user/check-username?username=${username}`);
   const data = await res.json();
   return data.exists;
 }
 
 export async function checkNicknameExists(nickname: string): Promise<boolean> {
-  const res = await fetch(`/api/check-nickname?nickname=${nickname}`);
+  const res = await fetch(`${BASE_URL}/user/check-nickname?nickname=${nickname}`);
   const data = await res.json();
   return data.exists;
 }
-
 
 export const login = async (login: Login): Promise<Login> => {
   const response = await axios.post(`${BASE_URL}/user/login`, login);
