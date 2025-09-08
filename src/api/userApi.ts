@@ -15,6 +15,20 @@ const getAxiosConfig = (): AxiosRequestConfig => {//매개변수 없고 반환�
 }    
 };
 
+ //유저 정보를 로그인 에이피아이로 유저정보 담아서 보내야한다?
+export const getAuthToken = async (login: Login) => {        //바디에 담을 정보: user
+    const response = await axios.post(`${BASE_URL}/user/login`, login)
+
+    //토큰이 들어있는 위치는 http 헤더중에 Authorization라는 이름 가진거
+    return response.headers.authorization; //
+}
+
+export const login = async (login: Login): Promise<Login> => {
+  const response = await axios.post(`${BASE_URL}/user/login`, login);
+  //return response.headers.authorization; //
+  return response.data;
+};
+
 
 export const signUp = async (user: User): Promise<User> => {
   const response = await axios.post(`${BASE_URL}/user/signUp`, user);
@@ -33,10 +47,8 @@ export async function checkNicknameExists(nickname: string): Promise<boolean> {
   return data.exists;
 }
 
-export const login = async (login: Login): Promise<Login> => {
-  const response = await axios.post(`${BASE_URL}/user/login`, login);
-  return response.data;
-};
+
+
 
 export const userInformation = async (): Promise<User> => {
   const response = await axios.get(

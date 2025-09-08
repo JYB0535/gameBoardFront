@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import type { Login } from "../type";
-import { Button, Snackbar, Stack, TextField } from "@mui/material";
-import { login } from "../api/userApi";
-import { useAuthStore } from "../store/auth";
+import { Button, selectClasses, Snackbar, Stack, TextField } from "@mui/material";
+import { getAuthToken, login } from "../api/userApi";
+import { useAuthStore } from "../auth";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -16,33 +16,26 @@ export default function Login() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
-
-  // const handleLogin = () => {
-  //     GetAuthToken(user)
-  //     .then((token) => {
-  //         if(token !== null) {
-  //             sessionStorage.setItem("jwt", token);
-  //             login();
-  //             navigate("/");
-  //         }
-
-  //     })
-  //     .catch((err) => {
-  //         console.log(err);
-  //         setToastOpen(true);
-  //     });
-  // };
-
-  const handleLogin = (e) => {
-    login(user)
-      .then(() => {
-        userLogin()
-        //setIsAuthenticated(true);
+  
+  const handleLogin = async () => {
+    try {
+      const token = await getAuthToken(user);
+      if (token) {
+        sessionStorage.setItem("jwt", token);
+        userLogin();
         navigate("/");
-      })
-      .catch((error) => {
+      } else {
+        alert("로그인에 실패했습니다: 토큰을 받지 못했습니다.");
+      }
+    } catch (error: any) {
+      if (error.response && error.response.data) {
+        console.error("Login error:", error.response);
         alert(error.response.data);
-      });
+      } else {
+        alert("로그인 중 알 수 없는 오류가 발생했습니다.");
+        console.error(error);
+      }
+    }
   };
 
   return (
