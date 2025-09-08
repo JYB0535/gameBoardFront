@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { signUp } from "../api/userApi";
+import { signUp, checkUsernameExists, checkNicknameExists } from "../api/userApi";
 
 type SignUpDto = {
+  id: string;
   username: string;
   password: string;
   nickname: string;
@@ -11,6 +12,7 @@ type SignUpDto = {
 
 const SignUp = () => {
   const [signUpDto, setSignUpDto] = useState<SignUpDto>({
+    id: "",
     username: "",
     password: "",
     nickname: "",
@@ -18,111 +20,93 @@ const SignUp = () => {
     role: "USER",
   });
 
-  /**
-   * 인풋 태그에 값이 변경될 때
-   * @param e
-   */
+  const [usernameValid, setUsernameValid] = useState<boolean | null>(null);
+  const [nicknameValid, setNicknameValid] = useState<boolean | null>(null);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setSignUpDto((prev) => ({ ...prev, [name]: value }));
+    if (name === "username") setUsernameValid(null);
+    if (name === "nickname") setNicknameValid(null);
   };
 
-  /**
-   * 회원가입버튼 눌렀을 때 호출하는 함수
-   * @param e
-   */
+  const handleUsernameCheck = async () => {
+    const exists = await checkUsernameExists(signUpDto.username);
+    setUsernameValid(!exists);
+    alert(exists ? "이미 사용 중인 ID입니다." : "사용 가능한 ID입니다.");
+  };
+
+  const handleNicknameCheck = async () => {
+    const exists = await checkNicknameExists(signUpDto.nickname);
+    setNicknameValid(!exists);
+    alert(exists ? "이미 사용 중인 닉네임입니다." : "사용 가능한 닉네임입니다.");
+  };
+
   const handleSubmit = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
-    signUp(signUpDto);
+    if (usernameValid === false || nicknameValid === false) {
+      alert("중복 확인을 먼저 해주세요.");
+      return;
+    }
 
-    // e.preventDefault();
-    // try {
-    //   const res = await fetch("http://localhost:8080", {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify(formData),
-    //   });
-    //   const result = await res.json();
-    //   if (result.success) {
-    //     alert("회원가입 성공!");
-    //   } else {
-    //     alert("회원가입 실패: " + result.message);
-    //   }
-    // } catch (err) {
-    //   console.error(err);
-    //   alert("서버 오류");
-    // }
+    try {
+      await signUp(signUpDto);
+      alert("회원가입 완료!");
+    } catch (err) {
+      console.error(err);
+      alert("회원가입 실패");
+    }
   };
 
   return (
-    // <form
-    //   onSubmit={(e) => {
-    //     handleSubmit(e);
-    //   }}
-    //   style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
-    // >
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        width: "300px",
-        gap: "10px",
-      }}
-    >
+    <div style={{ display: "flex", flexDirection: "column", width: "300px", gap: "10px" }}>
       <div style={{ display: "flex", gap: "10px" }}>
         <input
           name="username"
           type="text"
           placeholder="ID"
-          onChange={(e) => {
-            handleChange(e);
-          }}
+          onChange={handleChange}
+          value={signUpDto.username}
           style={{ padding: "8px", flex: 1 }}
         />
-        <button type="button">중복 확인</button>
+        <button type="button" onClick={handleUsernameCheck}>중복 확인</button>
       </div>
       <div style={{ display: "flex", gap: "10px" }}>
         <input
           name="nickname"
           type="text"
           placeholder="사용자 이름"
-          onChange={(e) => {
-            handleChange(e);
-          }}
+          onChange={handleChange}
+          value={signUpDto.nickname}
           style={{ padding: "8px", flex: 1 }}
         />
-        <button type="button">중복 확인</button>
+        <button type="button" onClick={handleNicknameCheck}>중복 확인</button>
       </div>
       <input
         name="password"
         type="password"
         placeholder="비밀번호"
-        onChange={(e) => {
-          handleChange(e);
-        }}
+        onChange={handleChange}
+        value={signUpDto.password}
         style={{ padding: "8px" }}
       />
       <input
         name="email"
         type="email"
         placeholder="이메일"
-        onChange={(e) => {
-          handleChange(e);
-        }}
+        onChange={handleChange}
+        value={signUpDto.email}
         style={{ padding: "8px" }}
       />
       <button
         type="submit"
-        onClick={(e) => {
-          handleSubmit(e);
-        }}
+        onClick={handleSubmit}
         style={{ marginTop: "10px" }}
       >
         회원가입
       </button>
     </div>
-    // </form>
   );
 };
 
