@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import type { Login } from "../type";
 import { Button, Snackbar, Stack, TextField } from "@mui/material";
-import { login } from "../api/userApi";
-import { useAuthStore } from "../store/auth";
+import { getAuthToken, login } from "../api/userApi";
+import { useAuthStore } from "../auth";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -33,12 +33,15 @@ export default function Login() {
   //     });
   // };
 
-  const handleLogin = (e) => {
-    login(user)
-      .then(() => {
-        userLogin()
-        //setIsAuthenticated(true);
+  const handleLogin = () => {
+    getAuthToken(user)
+      .then((token) => {
+        if(token !== null) {
+          sessionStorage.setItem("jwt", token);
+          userLogin();
+          //setIsAuthenticated(true);
         navigate("/");
+        }
       })
       .catch((error) => {
         alert(error.response.data);

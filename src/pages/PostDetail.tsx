@@ -4,7 +4,7 @@ import type { Post, User } from "../type";
 import { deletePost, getData } from "../api/postApi";
 import { Button, TextField } from "@mui/material";
 import EditPost from "./EditPost";
-import { useAuthStore } from "../store/auth";
+import { useAuthStore } from "../auth";
 
 export default function PostDetail() {
   const [data, setData] = useState<Post[]>([]);

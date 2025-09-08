@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import { Link, Outlet } from "react-router-dom";
-import { useAuthStore } from "../store/auth";
+import { useAuthStore } from "../auth";
 
 export default function Bar() {
   //const { isAuthenticated, setIsAuthenticated } = useAuthStore();
