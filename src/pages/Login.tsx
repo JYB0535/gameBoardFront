@@ -7,7 +7,7 @@ import { useAuthStore } from "../store/auth";
 
 export default function Login() {
   const navigate = useNavigate();
-  const { setIsAuthenticated } = useAuthStore();
+  const {userLogin} = useAuthStore();
 
   const [user, setUser] = useState<Login>({
     username: "",
@@ -36,7 +36,8 @@ export default function Login() {
   const handleLogin = (e) => {
     login(user)
       .then(() => {
-        setIsAuthenticated(true);
+        userLogin()
+        //setIsAuthenticated(true);
         navigate("/");
       })
       .catch((error) => {

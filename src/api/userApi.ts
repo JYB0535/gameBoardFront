@@ -1,7 +1,20 @@
-import axios from "axios";
+import axios, { type AxiosRequestConfig } from "axios";
 import type { Login, User } from "../type";
-import { getAxiosConfig } from "../util/header";
+//import { getAxiosConfig } from "../util/header";
+//import { useAuthStore } from "../store/auth";
 const BASE_URL = import.meta.env.VITE_API_URL;
+
+const getAxiosConfig = (): AxiosRequestConfig => {//매개변수 없고 반환타입은 악시오스
+    //얘는 악시오스 설정 객체를 반환하면 된다 그래서 객체 리턴
+    const token = sessionStorage.getItem('jwt'); //토큰 위치 
+
+    return {
+        headers: {
+            'Authorization': token
+        }
+}    
+};
+
 
 export const signUp = async (user: User): Promise<User> => {
   const response = await axios.post(`${BASE_URL}/user/signUp`, user);
@@ -33,3 +46,4 @@ export const userInformation = async (): Promise<User> => {
   );
   return response.data;
 };
+
