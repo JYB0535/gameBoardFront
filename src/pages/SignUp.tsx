@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { signUp, checkUsernameExists, checkNicknameExists } from "../api/userApi";
+import { useNavigate } from "react-router-dom";
 
 type SignUpDto = {
   id: string;
@@ -41,7 +42,7 @@ const SignUp = () => {
     setNicknameValid(!exists);
     alert(exists ? "이미 사용 중인 닉네임입니다." : "사용 가능한 닉네임입니다.");
   };
-
+  const navigate = useNavigate();
   const handleSubmit = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
@@ -58,6 +59,7 @@ const SignUp = () => {
     try {
       await signUp(signUpDto);
       alert("회원가입 완료!");
+      navigate("/");
     } catch (err) {
       console.error(err);
       alert("회원가입 실패");

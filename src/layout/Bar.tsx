@@ -17,7 +17,7 @@ export default function Bar() {
     color: "white",
     mx: 3,
     "&:hover": {
-      backgroundColor: "#1976d2", // 호버 시 배경색
+      backgroundColor: "#16ade8ff", // 호버 시 배경색
       color: "#c2c2c2ff", // 호버 시 글자색
     },
   };

@@ -1,5 +1,5 @@
 import axios, { type AxiosRequestConfig } from "axios";
-import type { Login, User } from "../type";
+import type { Login, Post, User } from "../type";
 //import { getAxiosConfig } from "../util/header";
 //import { useAuthStore } from "../store/auth";
 const BASE_URL = import.meta.env.VITE_API_URL;
@@ -45,6 +45,10 @@ export async function checkNicknameExists(nickname: string): Promise<boolean> {
   const res = await fetch(`${BASE_URL}/user/check-nickname?nickname=${nickname}`);
   const data = await res.json();
   return data.exists;
+}
+export async function getData(): Promise<Post[]> {
+  const res = await axios.get(`${BASE_URL}/user/posts`);
+  return res.data;
 }
 
 
