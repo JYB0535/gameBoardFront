@@ -7,11 +7,13 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet} from "react-router-dom";
 import { useAuthStore } from "../store/auth";
 
 export default function MainLayout() {
-  const { isAuthenticated, setIsAuthenticated } = useAuthStore();
+  //const navigate = useNavigate();
+  //const { isAuthenticated, userLogin, userLogout } = useAuthStore();
+  const { isAuthenticated, userLogout } = useAuthStore();
   const topButtonStyle = {
     color: "white",
     mx: 3,
@@ -21,12 +23,25 @@ export default function MainLayout() {
     },
   };
 
-  const clickLogoutBtn = () => {
-    document.cookie =
-      "cookieName=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    setIsAuthenticated(false);
-  };
+  //  const clickLogoutBtn = () => {
+  //   sessionStorage.setItem("jwt", "");
+  //   setIsAuthenticated(false);
+  // };
 
+  // const clickLogoutBtn = () => {
+  //   document.cookie =
+  //     "cookieName=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  //   setIsAuthenticated(false);
+  // };
+  
+//   const clickLogoutBtn = async () => {
+//   await fetch("http://localhost:5173/api/user/logout", {
+//     method: "POST",
+//     credentials: "include", // 쿠키 포함해서 요청
+//   });
+//   setIsAuthenticated(false);
+//   navigate("/");
+// };
   return (
     <Container maxWidth="xl">
       <CssBaseline />
@@ -54,7 +69,7 @@ export default function MainLayout() {
               로그인
             </Button>
           ) : (
-            <Button onClick={clickLogoutBtn} sx={topButtonStyle}>
+            <Button onClick={userLogout} sx={topButtonStyle}>
               로그아웃
             </Button>
           )}

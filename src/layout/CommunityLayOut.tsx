@@ -10,8 +10,10 @@ import {
 import { Link, Outlet } from "react-router-dom";
 import { useAuthStore } from "../store/auth";
 
+
+
 export default function CommunityLayout() {
-  const { isAuthenticated, setIsAuthenticated } = useAuthStore();
+  const { isAuthenticated, userLogout } = useAuthStore();
   const topButtonStyle = {
     color: "white",
     mx: 3,
@@ -21,11 +23,12 @@ export default function CommunityLayout() {
     },
   };
 
-  const clickLogoutBtn = () => {
-    document.cookie =
-      "cookieName=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    setIsAuthenticated(false);
-  };
+  // const clickLogoutBtn = () => {
+  //   document.cookie =
+  //   "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=localhost";
+  //   setIsAuthenticated(false);
+  // };
+
   return (
     <Container maxWidth="xl">
       <CssBaseline />
@@ -53,7 +56,7 @@ export default function CommunityLayout() {
               로그인
             </Button>
           ) : (
-            <Button onClick={clickLogoutBtn} sx={topButtonStyle}>
+            <Button onClick={userLogout} sx={topButtonStyle}>
               로그아웃
             </Button>
           )}

@@ -11,7 +11,7 @@ import { Link, Outlet } from "react-router-dom";
 import { useAuthStore } from "../store/auth";
 
 export default function FreeLayout() {
-  const { isAuthenticated, setIsAuthenticated } = useAuthStore();
+   const { isAuthenticated, userLogout } = useAuthStore();
 
   const topButtonStyle = {
     color: "white",
@@ -22,11 +22,11 @@ export default function FreeLayout() {
     },
   };
 
-  const clickLogoutBtn = () => {
-    document.cookie =
-      "cookieName=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    setIsAuthenticated(false);
-  };
+  // const clickLogoutBtn = () => {
+  //   document.cookie =
+  //     "cookieName=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  //   setIsAuthenticated(false);
+  // };
 
   return (
     <Container maxWidth="xl">
@@ -55,7 +55,7 @@ export default function FreeLayout() {
               로그인
             </Button>
           ) : (
-            <Button onClick={clickLogoutBtn} sx={topButtonStyle}>
+            <Button onClick={userLogout} sx={topButtonStyle}>
               로그아웃
             </Button>
           )}

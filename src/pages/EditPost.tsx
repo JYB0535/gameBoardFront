@@ -22,7 +22,7 @@ export default function EditPost({ postData, loadPostData }: EditPostprops) {
     nickname: "",
     date: "",
     postName: "",
-    view: 0,
+    //view: 0,
     contents: "",
     img: "",
   });
@@ -33,7 +33,7 @@ export default function EditPost({ postData, loadPostData }: EditPostprops) {
       nickname: postData.nickname,
       date: postData.date,
       postName: postData.postName,
-      view: postData.view,
+      //view: postData.view,
       contents: postData.contents,
       img: postData.img,
     });
@@ -55,7 +55,7 @@ export default function EditPost({ postData, loadPostData }: EditPostprops) {
       nickname: "",
       date: "",
       postName: "",
-      view: 0,
+      //view: 0,
       contents: "",
       img: "",
     });
