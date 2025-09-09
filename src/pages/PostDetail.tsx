@@ -143,11 +143,12 @@ export default function PostDetail() {
         {/* 본문 내용 */}
         <div
           style={{
+            height: "500px",
             fontSize: "16px",
             lineHeight: "1.7",
             color: "#333",
             whiteSpace: "pre-wrap",
-            marginBottom: "500px",
+            marginBottom: "70px",
           }}
         >
           {post.contents || "게시글 본문 내용"}
