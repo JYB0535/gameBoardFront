@@ -6,6 +6,7 @@ import { Button, TextField } from "@mui/material";
 import EditPost from "./EditPost";
 import { useAuthStore } from "../auth";
 import { userInformation } from "../api/userApi";
+import CommentSection from "../component/CommentSection";
 
 export default function PostDetail() {
   const [post, setPost] = useState<Post>({
@@ -15,6 +16,7 @@ export default function PostDetail() {
     nickname: "",
     postName: "",
   });
+  
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
 
@@ -112,9 +114,9 @@ export default function PostDetail() {
       {/* 📦 박스 본체 */}
       <div
         style={{
-          width: "800px",
-          minHeight: "500px",
-          marginBottom: "280px",
+          width: "1300px",
+          height: "900px",
+          marginBottom: "100px",
           padding: "30px",
           border: "solid #ddd",
           borderRadius: "4px",
@@ -145,45 +147,17 @@ export default function PostDetail() {
             lineHeight: "1.7",
             color: "#333",
             whiteSpace: "pre-wrap",
-            marginBottom: "180px",
+            marginBottom: "500px",
           }}
         >
           {post.contents || "게시글 본문 내용"}
         </div>
-
+          <div style={{ marginTop: "40px" }}>
+          <CommentSection id={Number(id)} />
+        </div>
         {/* 댓글 입력 영역 */}
       </div>
 
-      {/* 댓글 목록 */}
-
-      {/* <h3 style={{ fontSize: "16px", marginBottom: "10px" }}>
-        댓글 ({post.comments?.length || 0})
-      </h3>
-
-      {post.comments?.length ? (
-        post.comments.map((comment, index) => (
-          <Comment key={index} comment={comment} />
-        ))
-      ) : (
-        <p style={{ color: "#999", fontSize: "14px" }}>
-          첫 댓글을 작성해보세요 ✍️
-        </p>
-      )}
-      <div
-        style={{
-          marginBottom: "30px",
-        }}
-      >
-        <TextField label="댓글을 입력해주세요." />
-        <button style={{ marginLeft: "" }}>등록</button>
-      </div>
-      <h3 style={{ fontSize: "16px", marginBottom: "10px" }}></h3>
-
-      {post.comments?.map((comment, index) => (
-        <div key={index} style={{ marginBottom: "15px" }}>
-          <Comment comment={comment} />
-        </div>
-      ))} */}
 
       {/* 버튼 영역 */}
       <div style={{ marginTop: "20px" }}>

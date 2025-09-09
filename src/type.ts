@@ -22,3 +22,10 @@ export type Login = {
   username: string;
   password: string;
 };
+
+export interface Comment {
+  id?: number;
+  username: string;
+  nickname: string;
+  date: string;
+}

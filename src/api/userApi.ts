@@ -47,9 +47,11 @@ export async function checkNicknameExists(nickname: string): Promise<boolean> {
   return data.exists;
 }
 export async function getData(): Promise<Post[]> {
-  const res = await axios.get(`${BASE_URL}/user/posts`);
-  return res.data;
+  const res = await fetch(`${BASE_URL}/user/posts`); // 헤더 없이
+  const data = await res.json();
+  return data;
 }
+
 
 
 export const userInformation = async (): Promise<User> => {

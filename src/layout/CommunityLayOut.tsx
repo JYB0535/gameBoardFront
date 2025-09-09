@@ -63,7 +63,7 @@ export default function CommunityLayout() {
         </Toolbar>
         <img
           src="커뮤니티고양이.jpg"
-          alt="화살표 배너"
+          alt="고양이"
           style={{ width: "100%", height: "400px" }}
         />
       </AppBar>
