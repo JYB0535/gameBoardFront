@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import { Link, Outlet } from "react-router-dom";
 import { useAuthStore } from "../auth";
+import { useEffect } from "react";
 
 export default function Bar() {
   //const { isAuthenticated, setIsAuthenticated } = useAuthStore();
@@ -21,6 +22,10 @@ export default function Bar() {
       color: "#c2c2c2ff", // 호버 시 글자색
     },
   };
+
+  useEffect(() => {
+      
+    }, []);
 
   // const clickLogoutBtn = () => {
   //   document.cookie =

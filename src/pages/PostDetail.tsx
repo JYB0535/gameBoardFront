@@ -20,7 +20,7 @@ export default function PostDetail() {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
 
-  // const { isAuthenticated, setIsAuthenticated } = useAuthStore();
+  const { isAuthenticated } = useAuthStore();
   const [isEqualNickname, seIsEqualNickname] = useState<boolean>(false);
 
   const [userDto, setUserDto] = useState<User>();
@@ -51,17 +51,21 @@ export default function PostDetail() {
 
   // 2. 셋 포스트 작동 후 유저 정보 가져옴
   useEffect(() => {
-    getUserInformation();
-  }, [post]);
+    if(isAuthenticated) {
+      getUserInformation();
+    } else {
+      setUserDto(undefined);
+    }
+  }, [post, isAuthenticated]);
 
   // 3. 유저 정보 변경 후 작동
   useEffect(() => {
-    if (userDto) {
+    if (userDto && isAuthenticated) {
       seIsEqualNickname(userDto.nickname === post.nickname);
     } else {
       seIsEqualNickname(false);
     }
-  }, [userDto]);
+  }, [userDto, isAuthenticated]);
 
   useEffect(() => {}, []);
 
@@ -77,13 +81,15 @@ export default function PostDetail() {
       <div
         style={{
           display: "flex",
-          justifyContent: "space-between",
+          justifyContent: "center",
           maxHeight: "1000px",
           marginBottom: "10px",
           fontSize: "14px",
           color: "#888",
           width: "700px",
-          margin: "0 auto",
+          marginLeft: "auto",
+          marginRight: "auto",
+          marginTop: "30px",
           fontFamily: "'Noto Sans KR', sans-serif",
         }}
       >
@@ -93,6 +99,7 @@ export default function PostDetail() {
             display: "flex",
             alignItems: "center",
             gap: "180px",
+            marginLeft: "50px"
           }}
         >
           <h2
@@ -114,8 +121,10 @@ export default function PostDetail() {
       {/* 📦 박스 본체 */}
       <div
         style={{
+          display: "flex",
+          justifyContent: "flex-start",
           width: "1300px",
-          height: "900px",
+          height: "800px",
           marginBottom: "100px",
           padding: "30px",
           border: "solid #ddd",
@@ -152,16 +161,17 @@ export default function PostDetail() {
           }}
         >
           {post.contents || "게시글 본문 내용"}
-        </div>
-          <div style={{ marginTop: "40px" }}>
-          <CommentSection id={Number(id)} />
-        </div>
+        
         {/* 댓글 입력 영역 */}
       </div>
 
+      </div>
+          <div style={{ marginTop: "40px", width: "1300px" }}>
+          <CommentSection id={Number(id)} />
+        </div>    
 
       {/* 버튼 영역 */}
-      <div style={{ marginTop: "20px" }}>
+      <div style={{ marginTop: "20px", display: "flex", justifyContent: "center", marginLeft: "130px" }}>
         {isEqualNickname ? (
           <>
             <EditPost postData={post} updateCallback={getPostData} />
@@ -174,7 +184,7 @@ export default function PostDetail() {
                 }
                 handleDelete(post.id);
               }}
-              style={{ marginRight: "10px" }}
+       
             >
               삭제
             </Button>

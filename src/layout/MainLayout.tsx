@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import { Link, Outlet} from "react-router-dom";
 import { useAuthStore } from "../auth";
+import { useEffect } from "react";
 
 export default function MainLayout() {
   //const navigate = useNavigate();
@@ -23,6 +24,7 @@ export default function MainLayout() {
     },
   };
 
+  
   //  const clickLogoutBtn = () => {
   //   sessionStorage.setItem("jwt", "");
   //   setIsAuthenticated(false);
