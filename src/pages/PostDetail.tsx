@@ -98,8 +98,8 @@ export default function PostDetail() {
           style={{
             display: "flex",
             alignItems: "center",
-            gap: "180px",
-            marginLeft: "50px"
+            gap: "140px",
+            marginLeft: "30px"
           }}
         >
           <h2
