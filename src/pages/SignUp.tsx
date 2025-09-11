@@ -1,19 +1,12 @@
 import { useState } from "react";
 import { signUp, checkUsernameExists, checkNicknameExists } from "../api/userApi";
 import { useNavigate } from "react-router-dom";
+import type { User } from "../type";
 
-type SignUpDto = {
-  id: string;
-  username: string;
-  password: string;
-  nickname: string;
-  email: string;
-  role: string;
-};
 
 const SignUp = () => {
-  const [signUpDto, setSignUpDto] = useState<SignUpDto>({
-    id: "",
+  const [signUpDto, setSignUpDto] = useState<User>({
+    id: 0,
     username: "",
     password: "",
     nickname: "",
@@ -44,7 +37,7 @@ const SignUp = () => {
   };
   const navigate = useNavigate();
   const handleSubmit = async (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    e: React.MouseEvent<HTMLButtonElement>
   ) => {
     const { username, password, nickname, email } = signUpDto;
     if (!username || !password || !nickname || !email) {
